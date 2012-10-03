@@ -88,7 +88,7 @@ Tests can alternatively be run by invoking ruby directly:
 ## Bootstrapping
 The application is bootstrapped from the app.rb file, which handles file load order, setting environment-wide configuration options, and makes controllers and helpers work properly in the Sinatra application without further work from the developer.
 
-app.rb loads the /config/init.rb file to handle this process. Sinatra settings are included in the app.rb file.
+app.rb loads the /init.rb file to handle this process. Sinatra settings are included in the app.rb file.
 
 ## Dependencies
 Dependent gems can be configured in the Gemfile using [Bundler](http://gembundler.com/).
