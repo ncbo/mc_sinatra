@@ -43,6 +43,9 @@ Pry also allows for command-line code browsing. For example:
 
 For help on available commands, type `help` in the console or read up on [Pry](http://pryrepl.org/).
 
+### Debugging
+You can place the statement `binding.pry` anywhere in the code to drop into a pry-based debug session.
+
 ## Components
 
 ### Models
