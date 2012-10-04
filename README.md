@@ -8,8 +8,8 @@ Fork the project, create a branch, and then customize as necessary. There are se
 ### Installation
 MC Sinatra requires a ruby 1.9.3 environment and the bundler gem. Once bundler is installed, fork, branch and clone the code. Then, from the main directory:
 
-- `bundle install`
-- `rackup`
+    bundle install
+    rackup
 
 ### Runtime environment options
 There are several ways to load the application:
@@ -38,8 +38,8 @@ The console will automatically load a Rack::Test environment, meaning that you c
 
 Pry also allows for command-line code browsing. For example:
 
-- `cd Person`
-- `ls`
+    cd Person
+    ls
 
 For help on available commands, type `help` in the console or read up on [Pry](http://pryrepl.org/).
 
