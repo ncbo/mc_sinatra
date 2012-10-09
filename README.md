@@ -87,7 +87,14 @@ Several rake tasks are available for running tests:
 - `rake test:helpers` runs helper tests
 
 Tests can alternatively be run by invoking ruby directly:
-`ruby tests/controllers/test_hello_world.rb`
+`ruby tests/controllers/test_hello_world.rb`\
+
+## Logging
+A global logger is provided, which unfortunately does not yet integrate with Sinatra's logger. The logger is available using the constant `LOGGER` and uses Apache's common logging format.
+
+There are multiple levels of logging available (`debug`, `info`, `warn`, `error`, and `fatal`), with only logging for `info` and above available in the production environment.
+
+For more information on the logger, see Ruby's [Logger class](http://www.ruby-doc.org/stdlib-1.9.3/libdoc/logger/rdoc/Logger.html).
 
 ## Bootstrapping
 The application is bootstrapped from the app.rb file, which handles file load order, setting environment-wide configuration options, and makes controllers and helpers work properly in the Sinatra application without further work from the developer.
