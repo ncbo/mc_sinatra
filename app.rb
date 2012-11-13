@@ -27,6 +27,6 @@ require_relative 'init'
 if settings.environment == :console
   require 'rack/test'
   include Rack::Test::Methods; def app() Sinatra::Application end
-  Pry.start binding
+  Pry.start binding, :quiet => true
   exit
 end
