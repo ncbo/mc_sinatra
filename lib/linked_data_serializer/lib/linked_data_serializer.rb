@@ -7,13 +7,12 @@ class LinkedDataSerializer
 
   def call(env)
     status, headers, response = @app.call(env)
-    # Get params
     params = env["rack.request.query_hash"]
     # Client accept header
     accept = env['rack-accept.request']
     # Out of the media types we offer, which would be best?
     best = LinkedDataMediaTypes.base_type(accept.best_media_type(LinkedDataMediaTypes.all))
-    # If user provided a format, override the accept header
+    # If user provided a format via query string, override the accept header
     best = params["format"].to_sym if params["format"]
     # Error out if we don't support the foramt
     unless LinkedDataMediaTypes.supported_base_type?(best)
