@@ -1,14 +1,14 @@
 require 'set'
 
 class Object
-  def to_hash(options = {})
+  def to_flex_hash(options = {})
     if kind_of?(Hash) || kind_of?(String) || kind_of?(Fixnum) || kind_of?(Float); then return self; end
 
     # Handle enumerables by recursing
-    if kind_of?(Enumerable)
+    if kind_of?(Enumerable) && !kind_of?(Hash)
       new_enum = self.class.new
       each do |item|
-        new_enum << item.to_hash
+        new_enum << item.to_flex_hash
       end
       return new_enum
     end
