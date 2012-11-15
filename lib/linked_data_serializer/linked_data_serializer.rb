@@ -1,0 +1,1 @@
+require_relative "linked_data_serializer/base"
