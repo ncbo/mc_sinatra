@@ -26,7 +26,8 @@ class LinkedDataSerializer
         :body => serialize(best, response, params)
       )
     rescue Exception => e
-      response(:status => 500)
+      message = e.message + "\n\n" + e.backtrace.join("\n") if development?
+      response(:status => 500, :body => message)
     end
   end
 
