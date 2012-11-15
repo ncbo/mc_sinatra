@@ -16,6 +16,11 @@ class Object
       methods = serializable_methods if respond_to? "serializable_methods"
     end
 
+    # Infer methods from only
+    only.each do |prop|
+      methods << prop unless hash.key?(prop)
+    end
+
     # Add methods
     methods.each do |method|
       hash[method] = self.send(method.to_s)

@@ -104,6 +104,12 @@ class ToHashTest < Test::Unit::TestCase
     assert_equal person, reference
   end
 
+  def test_method_provided_in_only
+    person = PERSON.to_hash(:only => [:name_upcase, :relative_age])
+    reference = {:relative_age=>"old", :name_upcase=>"SIMON"}
+    assert_equal person, reference
+  end
+
   def test_subclass_inheritance
     person = PAUL.to_hash(:all => true)
     reference = {:name=>"Paul A", :age=>35, :height=>8, :relative_age=>"old", :name_upcase=>"PAUL A", :person_is_how_old=>"Paul A is 35", :test_method=>"return from test method"}
