@@ -1,14 +1,14 @@
 class LinkedDataMediaTypes
   TYPE_MAP = {
+     "text/html" => :html,
+     "application/xhtml+xml" => :html,
+     "application/json" => :json,
      "application/rdf+turtle" => :turtle,
      "application/x-turtle" => :turtle,
      "application/turtle" => :turtle,
-     "application/json" => :json,
      "application/rdf+xml" => :xml,
      "application/xml" => :xml,
-     "text/xml" => :xml,
-     "text/html" => :html,
-     "application/xhtml+xml" => :html
+     "text/xml" => :xml
   }
 
   def self.all
