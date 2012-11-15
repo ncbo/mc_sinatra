@@ -45,8 +45,11 @@ class LinkedDataSerializer
   end
 
   def serialize(type, obj, params)
-    only = params[:include] ||= []
-    options = {:only => only}
+    only = params["include"] ||= []
+    only = only.split(",") unless only.kind_of?(Array)
+    only, all = [], true if only[0].eql?("all")
+    options = {:only => only, :all => all}
+    LOGGER.debug options
     send("serialize_#{type}", obj, options)
   end
 
@@ -65,4 +68,5 @@ class LinkedDataSerializer
   def serialize_turtle(obj, options = {})
     "turtle"
   end
+
 end
