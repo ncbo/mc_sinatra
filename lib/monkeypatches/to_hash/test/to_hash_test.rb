@@ -124,4 +124,11 @@ class ToHashTest < Test::Unit::TestCase
     assert string.kind_of?(String)
     assert hash.kind_of?(Hash)
   end
+
+  def test_array_of_objs_to_array_of_hashes
+    array = [PERSON, PAUL, [PERSON, PAUL]]
+    hash = array.to_hash
+    reference = [{:name=>"Simon", :age=>21, :height=>6}, {:name=>"Paul A", :age=>35, :height=>8}, [{:name=>"Simon", :age=>21, :height=>6}, {:name=>"Paul A", :age=>35, :height=>8}]]
+    assert_equal hash, reference
+  end
 end
