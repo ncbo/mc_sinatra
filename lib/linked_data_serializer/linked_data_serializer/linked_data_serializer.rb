@@ -15,18 +15,33 @@ class LinkedDataSerializer
     best = LinkedDataMediaTypes.base_type(accept.best_media_type(LinkedDataMediaTypes.all))
     # If user provided a format, override the accept header
     best = params["format"].to_sym if params["format"]
-    # Generate the body using appropriate serializer
-    body = serialize(best, response, params)
-    # Set proper content length
-    headers["Content-Length"] = body.bytesize.to_s
-    [status, headers, body]
     # Error out if we don't support the foramt
     unless LinkedDataMediaTypes.supported_base_type?(best)
       return response(:status => 415)
     end
+    begin
+      response(
+        :status => status,
+        :content_type => "#{LinkedDataMediaTypes.media_type_from_base(best)};charset=utf-8",
+        :body => serialize(best, response, params)
+      )
+    rescue Exception => e
+      response(:status => 500)
+    end
   end
 
   private
+
+  def response(options = {})
+    status = options[:status] ||= 200
+    headers = options[:headers] ||= {}
+    body = options[:body] ||= ""
+    content_type = options[:content_type] ||= "text/plain"
+    content_length = options[:content_length] ||= body.bytesize.to_s
+    raise ArgumentError("Body must be a string") unless body.kind_of?(String)
+    headers.merge!({"Content-Type" => content_type, "Content-Length" => content_length})
+    [status, headers, body]
+  end
 
   def serialize(type, obj, params)
     only = params[:include] ||= []
