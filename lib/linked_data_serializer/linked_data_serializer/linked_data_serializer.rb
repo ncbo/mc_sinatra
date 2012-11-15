@@ -7,13 +7,12 @@ class LinkedDataSerializer
 
   def call(env)
     status, headers, response = @app.call(env)
-    LOGGER.debug "WE'RE HERE"
     # Get params
     params = env["rack.request.query_hash"]
     # Client accept header
     accept = env['rack-accept.request']
     # Out of the media types we offer, which would be best?
-    best = LinkedDataMediaTypes.symbol(accept.best_media_type(LinkedDataMediaTypes.all))
+    best = LinkedDataMediaTypes.base_type(accept.best_media_type(LinkedDataMediaTypes.all))
     # If user provided a format, override the accept header
     best = params["format"].to_sym if params["format"]
     # Generate the body using appropriate serializer
@@ -21,6 +20,10 @@ class LinkedDataSerializer
     # Set proper content length
     headers["Content-Length"] = body.bytesize.to_s
     [status, headers, body]
+    # Error out if we don't support the foramt
+    unless LinkedDataMediaTypes.supported_base_type?(best)
+      return response(:status => 415)
+    end
   end
 
   private
