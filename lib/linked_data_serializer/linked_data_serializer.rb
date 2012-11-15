@@ -1,1 +1,1 @@
-require_relative "linked_data_serializer/base"
+require_relative "linked_data_serializer/linked_data_serializer"

@@ -12,7 +12,10 @@ class LinkedDataSerializer
     accept = env['rack-accept.request']
     # Out of the media types we offer, which would be best?
     best = accept.best_media_type(LinkedDataMediaTypes.all)
+    # Generate the body using appropriate serializer
     body = serialize(LinkedDataMediaTypes.symbol(best), response)
+    # Set proper content length
+    headers["Content-Length"] = body.bytesize.to_s
     binding.pry
     [status, headers, body]
   end
@@ -20,22 +23,24 @@ class LinkedDataSerializer
   private
 
   def serialize(type, obj)
-    send("serialize_#{type}", obj)
+    only = params[:include] ||= []
+    options = {:only => only}
+    send("serialize_#{type}", obj, options)
   end
 
-  def serialize_json(obj)
-    obj.to_json
+  def serialize_json(obj, options = {})
+    obj.to_hash(options).to_json
   end
 
-  def serialize_html(obj)
+  def serialize_html(obj, options = {})
     "html"
   end
 
-  def serialize_xml(obj)
+  def serialize_xml(obj, options = {})
     "xml"
   end
 
-  def serialize_turtle(obj)
+  def serialize_turtle(obj, options = {})
     "turtle"
   end
 end
