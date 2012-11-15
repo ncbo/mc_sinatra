@@ -3,6 +3,10 @@ class HelloController < ApplicationController
     # Default content type (this will need to support all of our content types eventually)
     before { content_type :json }
 
+    get do
+      "Hello world"
+    end
+
     get '/debug' do
       LOGGER.debug "Let's start a debug session"
       # Start a debugging session using pry
