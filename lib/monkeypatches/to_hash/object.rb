@@ -2,6 +2,7 @@ require 'set'
 
 class Object
   def to_hash(options = {})
+    if kind_of?(Hash) || kind_of?(String) || kind_of?(Fixnum) || kind_of?(Float); then return self; end
     all = options[:all] ||= false
     only = Set.new(options[:only]).map! {|e| e.to_sym }
     methods = Set.new(options[:methods]).map! {|e| e.to_sym }

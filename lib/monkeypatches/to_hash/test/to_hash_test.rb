@@ -115,4 +115,13 @@ class ToHashTest < Test::Unit::TestCase
     reference = {:name=>"Paul A", :age=>35, :height=>8, :relative_age=>"old", :name_upcase=>"PAUL A", :person_is_how_old=>"Paul A is 35", :test_method=>"return from test method"}
     assert_equal person, reference
   end
+
+  def test_do_not_convert
+    fixnum = 1.to_hash
+    string = "a".to_hash
+    hash = {test: 1}.to_hash
+    assert fixnum.kind_of?(Fixnum)
+    assert string.kind_of?(String)
+    assert hash.kind_of?(Hash)
+  end
 end
