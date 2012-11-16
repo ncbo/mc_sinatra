@@ -2,6 +2,7 @@ module LinkedData
   module MediaTypes
     HTML = :html
     JSON = :json
+    JSONP = :jsonp
     XML = :xml
     TURTLE = :turtle
 
@@ -31,6 +32,10 @@ module LinkedData
        "text/html" => HTML,
        "application/xhtml+xml" => HTML,
        "application/json" => JSON,
+       "text/javascript" => JSONP,
+       "application/javascript" => JSONP,
+       "application/ecmascript" => JSONP,
+       "application/x-ecmascript" => JSONP,
        "application/rdf+turtle" => TURTLE,
        "application/x-turtle" => TURTLE,
        "application/turtle" => TURTLE,
@@ -43,7 +48,8 @@ module LinkedData
       HTML => "text/html",
       TURTLE => "application/rdf+turtle",
       XML => "application/rdf+xml",
-      JSON => "application/json"
+      JSON => "application/json",
+      JSONP => "application/javascript"
     }
 
   end

@@ -14,6 +14,11 @@ module LinkedData
       end
     end
 
+    class JSONP
+      def self.serialize(obj, options)
+      end
+    end
+
     class XML
       def self.serialize(obj, options)
       end
@@ -32,6 +37,7 @@ module LinkedData
     SERIALIZERS = {
       LinkedData::MediaTypes::HTML => HTML,
       LinkedData::MediaTypes::JSON => JSON,
+      LinkedData::MediaTypes::JSONP => JSONP,
       LinkedData::MediaTypes::XML => XML,
       LinkedData::MediaTypes::TURTLE => Turtle
     }
