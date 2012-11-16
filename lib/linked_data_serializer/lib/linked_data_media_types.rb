@@ -1,22 +1,8 @@
 class LinkedDataMediaTypes
-  TYPE_MAP = {
-     "text/html" => :html,
-     "application/xhtml+xml" => :html,
-     "application/json" => :json,
-     "application/rdf+turtle" => :turtle,
-     "application/x-turtle" => :turtle,
-     "application/turtle" => :turtle,
-     "application/rdf+xml" => :xml,
-     "application/xml" => :xml,
-     "text/xml" => :xml
-  }
-
-  DEFAULT_TYPES = {
-    :html => "text/html",
-    :turtle => "application/rdf+turtle",
-    :xml => "application/rdf+xml",
-    :json => "application/json"
-  }
+  HTML = :html
+  JSON = :json
+  XML = :xml
+  TURTLE = :turtle
 
   def self.all
     TYPE_MAP.keys
@@ -37,4 +23,26 @@ class LinkedDataMediaTypes
   def self.supported_type?(type)
     TYPE_MAP.key?(type.to_s)
   end
+
+  private
+
+  TYPE_MAP = {
+     "text/html" => HTML,
+     "application/xhtml+xml" => HTML,
+     "application/json" => JSON,
+     "application/rdf+turtle" => TURTLE,
+     "application/x-turtle" => TURTLE,
+     "application/turtle" => TURTLE,
+     "application/rdf+xml" => XML,
+     "application/xml" => XML,
+     "text/xml" => XML
+  }
+
+  DEFAULT_TYPES = {
+    HTML => "text/html",
+    TURTLE => "application/rdf+turtle",
+    XML => "application/rdf+xml",
+    JSON => "application/json"
+  }
+
 end
