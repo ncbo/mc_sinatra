@@ -1,4 +1,5 @@
 require_relative "media_types"
+require_relative "serializers"
 
 module LinkedData
   class Serializer
@@ -50,7 +51,7 @@ module LinkedData
       only, all = [], true if only[0].eql?("all")
       options = {:only => only, :all => all}
       LOGGER.debug options
-      send("serialize_#{type}", obj, options)
+      LinkedData::Serializers.serialize(obj, type, options)
     end
 
     def serialize_json(obj, options = {})
