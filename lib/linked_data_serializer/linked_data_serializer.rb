@@ -1,1 +1,1 @@
-require_relative "lib/linked_data_serializer"
+require_relative "lib/serializer"

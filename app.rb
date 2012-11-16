@@ -28,7 +28,7 @@ require 'rack/accept'
 
 # Use middleware
 use Rack::Accept
-use LinkedDataSerializer
+use LinkedData::Serializer
 
 # Enter console mode
 if settings.environment == :console

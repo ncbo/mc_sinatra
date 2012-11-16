@@ -12,17 +12,17 @@ module LinkedData
       # Client accept header
       accept = env['rack-accept.request']
       # Out of the media types we offer, which would be best?
-      best = LinkedDataMediaTypes.base_type(accept.best_media_type(LinkedDataMediaTypes.all))
+      best = LinkedData::MediaTypes.base_type(accept.best_media_type(LinkedData::MediaTypes.all))
       # If user provided a format via query string, override the accept header
       best = params["format"].to_sym if params["format"]
       # Error out if we don't support the foramt
-      unless LinkedDataMediaTypes.supported_base_type?(best)
+      unless LinkedData::MediaTypes.supported_base_type?(best)
         return response(:status => 415)
       end
       begin
         response(
           :status => status,
-          :content_type => "#{LinkedDataMediaTypes.media_type_from_base(best)};charset=utf-8",
+          :content_type => "#{LinkedData::MediaTypes.media_type_from_base(best)};charset=utf-8",
           :body => serialize(best, response, params)
         )
       rescue Exception => e
