@@ -20,3 +20,4 @@ doc/
 
 # Mac artifacts
 **.DS_Store
+Gemfile.local

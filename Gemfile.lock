@@ -6,7 +6,13 @@ GIT
     shotgun (0.9)
       rack (>= 1.0)
 
+PATH
+  remote: ~/Development/goo
+  specs:
+    goo (0.0.2)
+
 GEM
+  remote: https://rubygems.org/
   remote: https://rubygems.org/
   specs:
     backports (2.6.4)
@@ -58,6 +64,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  goo!
   json
   pry
   rack-accept
