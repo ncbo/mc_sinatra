@@ -20,5 +20,5 @@ gemfile_local = File.expand_path("../Gemfile.local", __FILE__)
 if File.exists?(gemfile_local)
   self.instance_eval(Bundler.read_file(gemfile_local))
 else
-  gem 'goo', :git => ''
+  gem 'goo', :git => 'https://github.com/ncbo/goo.git'
 end
