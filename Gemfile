@@ -21,4 +21,6 @@ if File.exists?(gemfile_local)
   self.instance_eval(Bundler.read_file(gemfile_local))
 else
   gem 'goo', :git => 'https://github.com/ncbo/goo.git'
+  gem 'sparql_http', :git => 'https://github.com/ncbo/sparql_http.git'
 end
+
