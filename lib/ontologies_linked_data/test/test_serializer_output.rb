@@ -1,8 +1,7 @@
 require "test/unit"
 require "rack/test"
 require "json"
-require_relative "../linked_data_serializer"
-require_relative "../lib/monkeypatches/to_flex_hash/object.rb"
+require_relative "../ontologies_linked_data"
 
 class Person
   def initialize(name, age, height = 6)
@@ -32,7 +31,6 @@ class Person
   def serializable_methods
     [:relative_age, :name_upcase, :person_is_how_old]
   end
-
 end
 
 class TestSerializerOutput < Test::Unit::TestCase

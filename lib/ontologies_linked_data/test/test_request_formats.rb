@@ -1,9 +1,7 @@
 require "test/unit"
 require "rack/test"
 require "json"
-require_relative "../linked_data_serializer"
-require_relative "../lib/monkeypatches/to_flex_hash/object.rb"
-
+require_relative "../ontologies_linked_data"
 
 class TestLinkedDataSerializer < Test::Unit::TestCase
   include Rack::Test::Methods
