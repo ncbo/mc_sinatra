@@ -1,6 +1,5 @@
 require_relative "../../ontologies_linked_data"
 require "test/unit"
-require "pry"
 
 class TestReview < Test::Unit::TestCase
   def test_valid_review
