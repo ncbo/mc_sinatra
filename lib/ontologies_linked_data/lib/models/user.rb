@@ -2,8 +2,7 @@ module LinkedData
   module Models
     class User < Goo::Base::Resource
       model :user
-      validates :username, :presence => true, :cardinality => { :maximum => 1 }
-      unique :username
+      attribute :username, :unique => true, :cardinality => { :max => 1, :min => 1 }
 
       def initialize(attributes = {})
         super(attributes)

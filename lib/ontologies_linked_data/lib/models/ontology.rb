@@ -2,9 +2,8 @@ module LinkedData
   module Models
     class Ontology < Goo::Base::Resource
       model :ontology
-      validates :acronym, :presence => true, :cardinality => { :maximum => 1 }
-      validates :name, :presence => true, :cardinality => { :maximum => 1 }
-      unique :acronym
+      attribute :acronym, :unique => true, :cardinality => { :max => 1, :min => 1 }
+      attribute :name, :cardinality => { :max => 1, :min => 1 }
 
       def initialize(attributes = {})
         super(attributes)
