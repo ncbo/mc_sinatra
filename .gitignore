@@ -20,6 +20,7 @@ doc/
 
 # Mac artifacts
 **.DS_Store
-Gemfile.local
 
+# Support local gemfiles
+Gemfile.local
 Gemfile.lock
