@@ -1,6 +1,5 @@
 # Local gemfile
-# This gets included by a back-door in bundler so it doesn't affect
-# the Gemfile.lock (which gets committed to avoid different dependency versions)
+# This gets included by a back-door in bundler if it exists
 
 source 'https://rubygems.org'
 
