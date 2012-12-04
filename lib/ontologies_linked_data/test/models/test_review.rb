@@ -7,12 +7,12 @@ class TestReview < Test::Unit::TestCase
     assert (not r.valid?)
 
     # Not valid because not all attributes are present
-    r.creator = "paul"
+    r.body = "This is a test review"
     r.created = DateTime.parse("2012-10-04T07:00:00.000Z")
     assert (not r.valid?)
 
     # Still not valid because not all attributes are typed properly
-    r.body = "This is a test review"
+    r.creator = "paul"
     r.ontologyReviewed = "SNOMED"
     assert (not r.valid?)
 
