@@ -9,7 +9,7 @@ Dir.glob(project_root + '/lib/models/*', &method(:require))
 # Setup Goo (repo connection and namespaces)
 module LinkedData
   def self.config(options = {})
-    port = options[:port] || 8080
+    port = options[:port] || 9000
     host = options[:host] || "localhost"
     begin
       Goo.configure do |conf|
