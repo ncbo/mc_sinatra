@@ -7,26 +7,20 @@ project_root = File.dirname(File.absolute_path(__FILE__))
 Dir.glob(project_root + '/lib/models/*', &method(:require))
 
 # Setup Goo (repo connection and namespaces)
-if Goo.store().nil?
-  Goo.configure do |conf|
-    conf[:stores] = [ { :name => :main , :host => "localhost", :port => 8000 , :options => { } } ]
-    conf[:namespaces] = {
-      :metadata => "http://data.bioontology.org/metadata/",
-      :default => :metadata,
-    }
+module LinkedData
+  def self.config(options = {})
+    port = options[:port] || 8080
+    host = options[:host] || "localhost"
+    begin
+      Goo.configure do |conf|
+        conf[:stores] = [ { :name => :main , :host => host, :port => port, :options => { } } ]
+        conf[:namespaces] = {
+          :metadata => "http://data.bioontology.org/metadata/",
+          :default => :metadata,
+        }
+      end
+    rescue Exception => e
+      puts "Invalid configuration, moving on"
+    end
   end
 end
-
-# # Setup Goo
-# vocabs = Goo::Naming::Vocabularies.new()
-
-# # Any property no defined in a prefix space
-# # will fall under this namespace
-# vocabs.default = "http://data.bioontology.org/metadata/"
-
-# vocabs.register(:metadata, "http://data.bioontology.org/metadata/", [])
-# vocabs.register_model(:metadata, :review, LinkedData::Models::Review)
-# vocabs.register_model(:metadata, :ontology, LinkedData::Models::Ontology)
-# vocabs.register_model(:metadata, :user, LinkedData::Models::User)
-
-# Goo::Naming.register_vocabularies(vocabs)
