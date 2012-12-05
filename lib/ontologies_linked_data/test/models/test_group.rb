@@ -45,7 +45,6 @@ class TestGroup < Test::Unit::TestCase
     g1.delete
   end
 
-
   def test_group_save
     g = LinkedData::Models::Group.new({
         :created => DateTime.parse("2012-10-04T07:00:00.000Z"),
