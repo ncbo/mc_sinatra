@@ -1,7 +1,6 @@
-require_relative "../../ontologies_linked_data"
-require "test/unit"
+require_relative "../test_case"
 
-class TestUser < Test::Unit::TestCase
+class TestUser < LinkedData::TestCase
   def test_valid_user
     u = LinkedData::Models::User.new
     assert (not u.valid?)

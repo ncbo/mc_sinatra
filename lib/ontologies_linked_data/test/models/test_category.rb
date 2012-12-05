@@ -1,7 +1,6 @@
-require_relative "../../ontologies_linked_data"
-require "test/unit"
+require_relative "../test_case"
 
-class TestCategory < Test::Unit::TestCase
+class TestCategory < LinkedData::TestCase
   def test_valid_category
     c = LinkedData::Models::Category.new
     assert (not c.valid?)
