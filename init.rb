@@ -4,6 +4,8 @@ def require_dir(dir)
   Dir.glob("#{dir}/*/").each {|d| require_dir(d.gsub(/\/+$/, '')) }
 end
 
+# Require controller base files
+require_relative "controllers/application_controller"
 
 # Require known directories
 require_dir("lib")
