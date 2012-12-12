@@ -3,6 +3,8 @@ require 'sinatra/base'
 module Sinatra
   module Helpers
     module ApplicationHelper
+      ##
+      # Escape text for use in html
       def h(text)
         Rack::Utils.escape_html(text)
       end
