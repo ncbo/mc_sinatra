@@ -3,6 +3,8 @@ require 'sinatra/base'
 module Sinatra
   module Helpers
     module ApplicationHelper
+      SERIALIZER = LinkedData::Serializer.new
+
       ##
       # Escape text for use in html
       def h(text)
@@ -23,6 +25,22 @@ module Sinatra
       def instance_from_params(cls, params)
         n = cls.new
         populate_from_params(n, params)
+      end
+
+      ##
+      # Serialize objects using a custom serializer that handles content negotiation
+      # using the Accept header and "format" query string parameter
+      # * +obj+: object to be serialized
+      # * +status+: http status code
+      def s(obj, status = 200)
+        if obj.respond_to?("each")
+          obj.each do |sub_obj|
+            sub_obj.load unless !sub_obj.respond_to?("loaded?") || sub_obj.loaded?
+          end
+        else
+          obj.load unless !obj.respond_to?("loaded?") || obj.loaded?
+        end
+        SERIALIZER.build_response(@env, status: status, ld_object: obj)
       end
     end
 
