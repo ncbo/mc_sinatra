@@ -11,17 +11,25 @@ module Sinatra
         Rack::Utils.escape_html(text)
       end
 
-      # TODO: This will allow for mass-assignment problems and will allow
+      ##
+      # Populate +obj+ using values from +params+
+      # Will also try to find related objects using a Goo lookup.
+      # TODO: Currerntly, this allows for mass-assignment of everything, which will permit
       # users to overwrite any attribute, including things like passwords.
-      # TODO: This should use a Goo helper method to lookup attribute objects
-      # when the exist, for example when you need an IRI or a User object as a value.
+      # TODO: We should only mass-assign attributes that are declared (if obj.respond_to?...)
       def populate_from_params(obj, params)
         params.each do |attribute, value|
+          attr_cls = obj.class.range_class(attribute)
+          if attr_cls
+            value = attr_cls.find(value)
+          end
           obj.send("#{attribute}=", value) # if obj.respond_to?("#{attribute}=")
         end
         obj
       end
 
+      ##
+      # Create an instance of +cls+ using provided +params+ to fill in attributes
       def instance_from_params(cls, params)
         n = cls.new
         populate_from_params(n, params)
