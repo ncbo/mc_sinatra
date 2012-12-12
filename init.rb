@@ -24,3 +24,5 @@ subclasses_for(ApplicationController).each do |sub|
   use sub
 end
 
+# Setup ontologies_linked_data connection to triplestore
+LinkedData.config
