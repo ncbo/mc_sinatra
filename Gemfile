@@ -12,6 +12,7 @@ gem 'thin'
 
 # Debugging
 gem 'pry', :group => 'development'
+gem 'rack-perftools_profiler'
 
 # Code reloading
 gem 'shotgun', :group => 'development', :git => 'https://github.com/palexander/shotgun.git', :branch => 'ncbo'
