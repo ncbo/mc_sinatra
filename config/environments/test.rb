@@ -1,4 +1,4 @@
-# Config Goo connection for LinkedData (repo connection and namespaces)
-# LinkedData.config
 
-require_relative "local/development.rb" if File.exist?("local/development.rb")
+
+local_path = File.expand_path("../local/development.rb", __FILE__)
+require local_path if File.exist?(local_path)
